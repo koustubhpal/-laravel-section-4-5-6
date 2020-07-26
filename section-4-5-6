@@ -1,0 +1,299 @@
+VIEWS
+
+
+layout.blade.php
+----------------
+@extends('layout')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Laravel</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+		
+    </body>
+</html>
+
+welcome.blade.php
+-----------------
+
+@extends('layout')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Laravel</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+		@yield('content')
+    </body>
+</html>
+
+content.blade.php
+-----------------
+
+@extends('layout')
+@section('content')
+<h1>hello</h1>
+@endsection
+
+
+copy content from index.html file to another layout.blade.php file
+then go to the welcome.blade.php
+and write
+@extends('layout') then run
+@yield('content')
+again go to the welcome.blade.php file and write @extends('layout')
+						 @section('content')
+then go to the web.php
+write
+Route::get('/about',function(){
+return view('about');
+});
+then create about.blade.php
+
+
+active menu link code(in the mennu section i have to write)
+---------------------
+class="{{request::path()==='/about' 'current_page_item'!"}}
+class="{{request::path()==='/client' 'current_page_item'!"}}
+class="{{request::path()==='/service' 'current_page_item'!"}}
+class="{{request::path()==='/contact' 'current_page_item'!"}}
+class="{{request::path()==='/product' 'current_page_item'!"}}
+
+
+resources-saas-app.scss
+
+primary:red;
+body{
+color: $primary
+}
+
+vendor
+-----
+webpack.mix.js
+
+mix.sass('resources/saas/app.scss','public/css');
+
+npm -v
+npm install(for node module)
+npm rub dev
+
+
+
+php artisan make:model Article -m
+create article_table_php
+php artisan migrate
+php artisan tinker
+$article=new App/article
+$article->title='hi'
+$article->body='hello'
+$article
+$article save()
+
+
+Route::get('/about',function(){
+article=App\article:all();
+return view('about');
+});
+
+
+FORMS
+-------
+
+public function create(){
+ //for create new resource
+}
+public function store(){
+ //for store
+}
+public function edit(){
+ //for edit
+}
+public function update(){
+ //for update
+}
+public function destroy(){
+ //for delete
+}
+
+Route::get('/articles{article}/edit/update':'articlecontroller@edit/update')
+
+
+GET/videos
+GEt/videos/create
+POST/videos
+GET/videos/2
+
+
+@extends('layout')
+@section('content')
+<div id="wrapper">
+<div id="page" class="container">
+<h1>new article</h1>
+<form method="POST" action="/article">
+<label class="label" for="title">TitleM/label>
+<div id="control"
+<input class="input" type="text" name="title" id="title">
+</div>
+</div>
+
+<div class ="field">
+<label class="label"  for="excerpt">excerpt/label>
+
+<div class="control">
+<textarea class="textarea" name="excerpt" id="excerpt"</textarea>
+<div class=field is-grouped">
+<div class="control">
+<button class="button is link" type="submit">submit</button>
+@end section
+
+
+
+Route::get('/articles{article}/edit','articlecontroller@edit/');
+Route::get('/articles{article}/update','articlecontroller@update/');
+
+
+CONTROLLER TECH
+---------------
+
+public function show(article $article)
+
+{
+return view('articles show',[article=>$article]);
+}
+
+
+
+article::create([
+'title'=>request('title'),
+'excerpt'=>request('excerpt')
+'body'=>request('body')
+]);
+
+return redirect('article');
+
+in article.php we write
+class article extends Model{
+protected $fillable=['title','excerpt,'body']
+}
+
